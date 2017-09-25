@@ -19,7 +19,9 @@ To install the script:
     mkdir /etc/autossh
 
 Create configs in `/etc/autossh` as per the example `autossh.config`.
-More information at the above author's website, see URL below.
+More information at the above author's website, see URL below. (Note:
+except use the .config extension, used to distinguish configs from
+tilda/backup files etc.)
 
 To start and stop tunnels:
 

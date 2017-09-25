@@ -32,7 +32,7 @@ autossh="/usr/bin/autossh"
 
 start() {
 	config="$1"
-	cfname=`basename $config`
+	cfname=`basename $config .config`
 	forward_list=""
 
 	# make sure we have a config file
@@ -134,7 +134,7 @@ stop() {
 			rm -f /var/run/$prog/*.pid
 		fi
 	else
-		cfname="`basename $config`"
+		cfname="`basename $config .config`"
 		pidfile="/var/run/$prog/$cfname.pid"
 		if [ ! -f $pidfile ]
 		then
@@ -161,13 +161,13 @@ case "$action" in
 start)
 	if [ -z "$1" ]
 	then
-		# if no config names on the command-line, start all /etc/autossh/ configs found
-		for config in `echo /etc/$prog/${cfname:='*'}`
-		do $action $config; done
+		# if no config names on the command-line, start all /etc/autossh/*.config configs found
+		for config in `echo /etc/$prog/${cfname:='*'}.config`
+		do $action "${config%.config}"; done
 	else
 		# start only the config files specified on the command-line
 		for cfname in "$@"
-		do $action /etc/$prog/$cfname; done
+		do $action "/etc/$prog/$cfname.config"; done
 	fi
 	;;
 stop)
@@ -178,7 +178,7 @@ stop)
 	else
 		# stop only the config files specified on the command-line
 		for cfname in "$@"
-		do $action /etc/$prog/$cfname; done
+		do $action "/etc/$prog/$cfname.config"; done
 	fi
 	;;
 restart)
@@ -196,11 +196,11 @@ status)
 		# only show the status of config files specified on the command-line
 		for cfname in "$@"
 		do
-			config="/etc/$prog/$cfname"
+			config="/etc/$prog/$cfname.config"
 			# if the config file is missing, echo an error message
 			if [ -f $config ]
 			then
-				cfname="`basename $config`"
+				cfname="`basename $config .config`"
 				pidfile="/var/run/$prog/$cfname.pid"
 				# if the pidfile is missing, echo an error message
 				if [ -f $pidfile ]
