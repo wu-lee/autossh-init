@@ -21,12 +21,6 @@
 # FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 # details at http://www.gnu.org/licenses/.
 
-# Changelog:
-#
-# 2013/06/21 - Reset the $forward_list variable at the start() to prevent the
-# accumulation of ports for each config loop. Also added support for socks
-# proxies. Thanks to Chris for pointing out the issue in the comments.
-
 # Source function library
 . /etc/init.d/functions
 
