@@ -162,8 +162,8 @@ start)
 	if [ -z "$1" ]
 	then
 		# if no config names on the command-line, start all /etc/autossh/*.config configs found
-		for config in `echo /etc/$prog/${cfname:='*'}.config`
-		do $action "${config%.config}"; done
+		for config in "/etc/$prog"/*.config
+		do [ -f "$config" ] && $action "$config"; done
 	else
 		# start only the config files specified on the command-line
 		for cfname in "$@"
