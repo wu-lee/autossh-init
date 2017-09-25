@@ -8,6 +8,7 @@
 # pidfile: /var/run/autossh.pid
 
 # Copyright 2012 - Jean-Sebastien Morisset - http://surniaulula.com/
+# Modifications 2017- by github.wu-lee at noodlefactory.co.uk
 #
 # http://surniaulula.com/2012/12/10/autossh-startup-script-for-multiple-tunnels/
 #
